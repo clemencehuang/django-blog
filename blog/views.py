@@ -1,6 +1,14 @@
 from django.shortcuts import render
-from django.http import HttpResponse
+# the next line (3) can be deleted once post_list.html has been created *
+# from django.http import HttpResponse
+# * add the following instead:
+from django.views import generic
+from .models import Post
 
 # Create your views here.
-def my_blog(request):
-	return HttpResponse("Hello, Blog!")
+# the next lines (6 and 7) can be deleted once post_list.html has been created
+# def my_blog(request):
+# 	return HttpResponse("Hello, Blog!")
+class PostList(generic.ListView):
+    queryset = Post.objects.all()
+    template_name = "post_list.html"
